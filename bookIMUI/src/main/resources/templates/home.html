@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #222;
+        }
+
+        .container-fluid {
+            margin-top: 60px;
+        }
+
+        .car-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-box {
+            margin: 10px;
+            width: calc(33.333% - 20px);
+        }
+
+        .btn-box button {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            background-color:#353b40
+        }
+        
+        .library.books {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.7;
+    }
+    </style>
+</head>
+
+<body >
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#212529;">
+        <div class="d-flex justify-content-between align-items-center w-100 px-4">
+            <a class="navbar-brand" href="/home" style="color: #ffffff;">Book Inventory Management</a>
+            <div>
+                <button type="button" class="btn btn-secondary bg-danger">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <img src="https://th.bing.com/th/id/R.ae5208a16a431c8dfbade8cf6c90b2e6?rik=En2UbQZJaGVAPg&riu=http%3a%2f%2fimages.unsplash.com%2fphoto-1507842217343-583bb7270b66%3fixlib%3drb-1.2.1%26q%3d80%26fm%3djpg%26crop%3dentropy%26cs%3dtinysrgb%26w%3d1080%26fit%3dmax&ehk=d5HN33m1P%2fmxpLM%2bbTvOegaXt6ti%2bU0zsB9BnjcisTI%3d&risl=&pid=ImgRaw&r=0" alt="Library" class="library books">
+            </div>
+            <div class="col-md-6">
+                <div class="btn-container">
+                    <div class="btn-box">
+                    	<a href="authors">
+                        <button type="button" class="btn btn-primary">Author</button>
+                        </a>
+                    </div>
+                    <div class="btn-box">
+                        <a href="employee">
+                        <button type="button" class="btn btn-primary">Reviewer</button>
+                        </a>
+                    </div>
+                    <div class="btn-box">
+                       <a href="employee">
+                        <button type="button" class="btn btn-primary">Permrole</button>
+                        </a>
+                    </div>
+                    <div class="btn-box">
+                        <a href="employee">
+                        <button type="button" class="btn btn-primary">Book Condition</button>
+                        </a>
+                    </div>
+                    <div class="btn-box">
+                       <a href="employee">
+                        <button type="button" class="btn btn-primary">Books</button>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

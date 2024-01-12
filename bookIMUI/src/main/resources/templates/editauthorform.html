@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Author</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 600px; /* Adjust the width as needed */
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            flex: 0 0 48%; /* Adjust the width as needed with some margin in between */
+        }
+
+        .form-group label {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 16px;
+        }
+
+        .back {
+            position: absolute;
+            top: 1%;
+            left: 2%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form th:action="@{'/update/' + ${authorId}}" th:object="${auth}" method="post" class="needs-validation" novalidate>
+            <!-- Add 'was-validated' class to form to enable Bootstrap validation styling -->
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id">Author ID:</label>
+                    <input type="text" id="id" th:field="*{id}" class="form-control" required pattern="^[0-9]+" />
+                    <div class="invalid-feedback">Please provide a valid author id</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" th:field="*{lastName}" class="form-control" required />
+                    <div class="invalid-feedback">Please provide a valid last name.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" th:field="*{firstName}" class="form-control" required />
+                    <div class="invalid-feedback">Please provide a valid first name.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">Photo:</label>
+                    <input type="file" id="photo" th:field="*{photo}" class="form-control"/>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save author</button>
+        </form>
+        <a class="back" href="/authors"><button class="btn btn-outline-secondary">Back</button></a>
+    </div>
+
+    <!-- Add Bootstrap and Popper.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Example of using Bootstrap validation with the "needs-validation" class
+        (function () {
+            'use strict';
+
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

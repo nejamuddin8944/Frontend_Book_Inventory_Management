@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Author Details</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+</head>
+
+<body class="bg-light">
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#212529;">
+		<div class="d-flex justify-content-between align-items-center w-100 px-4">
+			<a class="navbar-brand" href="/home" style="color: #ffffff;">Book Inevntory Management</a>
+			<div>
+				<button type="button" class="btn btn-secondary bg-danger">Logout</button>
+			</div>
+		</div>
+	</nav>
+
+	<div class="mx-2 mt-4 h-1">
+
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<div>
+				<h3 class="text-primary">Author Details</h3>
+			</div>
+			<div class="d-flex">
+				<a href="addAuthor">
+					<button type="button" class="btn btn-primary ml-2" data-toggle="modal"
+						data-target="#addAuthorModal">
+						Add Author
+					</button>
+				</a>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped" id="authorTable">
+				<thead class="bg-dark text-white">
+					<tr>
+						<th>Author ID</th>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Photo</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Iterate over the list of authors -->
+					<tr th:each="author : ${author}">
+						<td th:text="${author.id}"></td>
+						<td th:text="${author.lastName}"></td>
+						<td th:text="${author.firstName}"></td>
+						<td th:text="${author.photo}"></td>
+
+						<td class="d-flex">
+							<!-- Update and delete buttons with Bootstrap styling -->
+							<div class="px-2">
+								<a th:href="@{'/edit/'+${author.id}}" class="btn btn-link text-danger">
+									<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+										viewBox="0 0 512 512">
+										<!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+										<path fill="#ffae00"
+											d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+									</svg>
+								</a>
+							</div>
+							<div>
+								<a th:href="@{/delete/{authorId}(authorId=${author.id})}"
+									class="btn btn-link text-danger" onclick="return confirm('Are you sure?')">
+									<svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+										viewBox="0 0 448 512">
+										<!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+										<path fill="#ff0000"
+											d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+									</svg>
+								</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Display a message if there are no employees -->
+		<div th:if="${#lists.isEmpty(author)}" class="alert alert-info mt-4">
+			No author found.
+		</div>
+
+
+	</div>
+
+	<!-- Footer -->
+	<div class="footer bg-light text-center py-3">
+		<p>&copy; 2023 Book Inventory Management</p>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#authorTable').DataTable();
+		});
+	</script>
+
+	<!-- Add any additional scripts here -->
+
+</body>
+
+</html>
